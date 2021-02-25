@@ -3,7 +3,7 @@ const fs = require('fs');
 const inquirer = require('inquirer');
 const generateMarkdown = require(`./utils/generateMarkdown`);
 
-// TODO: Create an array of questions for user input
+//Function for the user input
 const userInput = () => {
 
     inquirer
@@ -83,30 +83,26 @@ const userInput = () => {
 
 
 
-
         ])
+        .then((answer) => {
+            if (answer.license === 'yes') {
+                answer.license = `[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+            } else {
+                answer.license = '';
+            }
+            return answer;
+        })
 
         .then((answer) => {
-            if (answer.License === 'yes') {
-                ` [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
-            }
-            if (answer.tableofcontents === 'yes') {
-                `- [Description](#Description)
-                 - [Installation](#Installation)
-                 - [Usage](#Usage)
-                 - [Licence](#Licence)
-                 - [Contributors](#Contributors)
-                 - [Test](#Test)
-                 - [Repository Link](#Repository)
-                 - [GitHub Info](#GitHub) `
-
-            }
             const readMeContent = generateMarkdown(answer);
             fs.writeFile('README.md', readMeContent, (err) =>
                 err ? console.log(err) : console.log('Successfully created README.md!')
             );
+            if (answer.License === 'yes') {
+                ` [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+            }
 
         })
 };
-
+// calling userInput function to run
 userInput();

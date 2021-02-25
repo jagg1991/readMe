@@ -1,6 +1,6 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
 
 
+//creating a funtion for the read me file
 
 const generateMarkdown = (answer) =>
   `
@@ -27,11 +27,10 @@ ${answer.Description}
 
 ${answer.Installation}
 
-## ${answer.Usage}
+## Usage
 
-## Linensing
+${answer.Usage}
 
-${answer.License}
 
 ## Contrubutions!
 
@@ -43,9 +42,13 @@ ${answer.Contributing}
 
 ${answer.Questions}
 
-If you have any questions or concerns, you can email me at [${answer.Email}](${answer.Email})
+- [${answer.Email}](${answer.Email})
 
-You can also add my GitHub respitory [${answer.GitHub}](${answer.GitHub}).
+- [${answer.GitHub}](${answer.GitHub}).
+
+## License
+
+${answer.license}
 
 
 
