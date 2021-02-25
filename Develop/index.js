@@ -1,132 +1,112 @@
 // TODO: Include packages needed for this application
 const fs = require('fs');
 const inquirer = require('inquirer');
+const generateMarkdown = require(`./utils/generateMarkdown`);
 
 // TODO: Create an array of questions for user input
+const userInput = () => {
 
-inquirer
-    .prompt([
-        {
-            type: "input",
-            name: "Table of contents",
-            message: "List a table of contents for your readMe."
+    inquirer
+        .prompt([
 
-
-        },
-        {
-            type: "input",
-            name: "Title",
-            message: "What would you like the title of your readME to be?"
+            {
+                type: "input",
+                name: "Title",
+                message: "What would you like the title of your readME to be?"
 
 
-        },
-        {
-            type: "input",
-            name: "Description",
-            message: "Please list a description of how your application works?"
+            },
+            {
+                type: "input",
+                name: "Description",
+                message: "Please list a description of how your application works?"
 
 
-        },
+            },
 
-        {
-            type: "input",
-            name: "Installation",
-            message: "Explain how to install your application."
-
-
-        },
-        {
-            type: "input",
-            name: "Usage",
-            message: "What would you like the title of your readME to be?"
+            {
+                type: "input",
+                name: "Installation",
+                message: "Explain how to install your application."
 
 
-        },
-        {
-            type: "input",
-            name: "License",
-            message: "What would you like the title of your readME to be?"
+            },
+            {
+                type: "input",
+                name: "Usage",
+                message: "What should the user know about the usage of this project?"
 
 
-        },
-        {
-            type: "input",
-            name: "Contributing",
-            message: "What would you like the title of your readME to be?"
+            },
+            {
+                type: "input",
+                name: "License",
+                message: "Would you like to add the MIT license to your project? (yes/no)"
 
 
-        },
-        {
-            type: "input",
-            name: "Tests",
-            message: "What would you like the title of your readME to be?"
+            },
+            {
+                type: "input",
+                name: "Contributing",
+                message: "Are there any contributors to this project?"
 
 
-        },
-        {
-            type: "input",
-            name: "Questions",
-            message: "What would you like the title of your readME to be?"
+            },
+            {
+                type: "input",
+                name: "Tests",
+                message: "How does a user test you project?"
 
 
-        }
+            },
+            {
+                type: "input",
+                name: "Questions",
+                message: "What would you like you questions section to say?"
 
 
-    ])
+            },
+            {
+                type: "input",
+                name: "Email",
+                message: "Please enter an email you would like to use for questions!"
 
-    .then((answer) => {
-        const readMeContent = readME(answer);
-        fs.writeFile('README.md', readMeContent, (err) =>
-            err ? console.log(err) : console.log('Successfully created README.md!')
-        );
 
-    })
+            },
+            {
+                type: "input",
+                name: "GitHub",
+                message: "Please you GitHub username to add to the questions section of your readMe."
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) { }
 
-const readME = (answer) =>
-    `
-## Table of Contents
-
-${answer.tableofcontents}
+            },
 
 
 
 
+        ])
 
-## Description of ${answer.Title}
+        .then((answer) => {
+            if (answer.License === 'yes') {
+                ` [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)`
+            }
+            if (answer.tableofcontents === 'yes') {
+                `- [Description](#Description)
+                 - [Installation](#Installation)
+                 - [Usage](#Usage)
+                 - [Licence](#Licence)
+                 - [Contributors](#Contributors)
+                 - [Test](#Test)
+                 - [Repository Link](#Repository)
+                 - [GitHub Info](#GitHub) `
 
+            }
+            const readMeContent = generateMarkdown(answer);
+            fs.writeFile('README.md', readMeContent, (err) =>
+                err ? console.log(err) : console.log('Successfully created README.md!')
+            );
 
-${answer.Description}
+        })
+};
 
-## Installation instructions
-
-${answer.Installation}
-
-## ${answer.Usage}
-
-## Linensing
-
-${answer.License}
-
-## Contrubutions!
-
-${answer.Contributing}
-
-## ${answer.Tests}
-
-## Questions, or concerns??
-
-${answer.Questions}
-
-
-
-
-`
-
-// TODO: Create a function to initialize app
-function init() { }
-
-// Function call to initialize app
-init();
+userInput();
