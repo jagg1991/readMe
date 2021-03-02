@@ -2,13 +2,13 @@
 ## Table of Contents
 
 - Description
-      [Installation](#Installation)
-      [Usage](#Usage)
-      [Licence](#Licence)
-      [Contributors](#Contributors)
-      [Test](#Test)
-      [Repository Link](#Repository)
-      [GitHub Info](#GitHub)
+- Installation
+- Usage
+- Licence
+- Contributors
+- Test
+- Repository
+   
 
 
 
