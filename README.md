@@ -1,8 +1,7 @@
 
 ## Table of Contents
 
-
-      [Description](#Description)
+- Description
       [Installation](#Installation)
       [Usage](#Usage)
       [Licence](#Licence)
