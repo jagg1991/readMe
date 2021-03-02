@@ -12,7 +12,7 @@
 
 ## Video Walk through
 
-![Walkthrough](https://youtu.be/YGvbKr9cwBc)
+[Walkthrough](https://youtu.be/YGvbKr9cwBc)
 
 ## Description of README
 
